@@ -30,11 +30,9 @@ def create_todo():
         'ok': True,
     }
 
-@app.route('/todos/delete', methods=['delete'])
-def delete_todo():
-    req_data = request.get_json()
-
-    task_id = req_data['id']
+@app.route('/todos/delete/<id>', methods=['delete'])
+def delete_todo(id):
+    task_id = int(id)
 
     for idx, todo in enumerate(todos):
         if todo.get('id') == task_id:
@@ -46,12 +44,13 @@ def delete_todo():
         'ok': False
     }
 
-@app.route('/todos/update', methods=['PUT'])
-def update_todo():
+@app.route('/todos/update/<id>', methods=['PUT'])
+def update_todo(id):
+    task_id = int(id)
     req_data = request.get_json()
 
     for idx, todo in enumerate(todos):
-        if todo.get('id') == req_data['id']:
+        if todo.get('id') == task_id:
             todos.pop(idx)
             todos.insert(idx, { **todo, **req_data })
             break
