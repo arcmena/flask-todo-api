@@ -10,13 +10,13 @@ def init():
         'ok': True
     }
 
-@app.route('/todo/index', methods=['GET'])
+@app.route('/todos', methods=['GET'])
 def get_todos():
     return {
         'todos': todos
     }
 
-@app.route('/todo/create', methods=['POST'])
+@app.route('/todos/create', methods=['POST'])
 def create_todo():
     req_data = request.get_json()
 
@@ -30,7 +30,7 @@ def create_todo():
         'ok': True,
     }
 
-@app.route('/todo/delete', methods=['delete'])
+@app.route('/todos/delete', methods=['delete'])
 def delete_todo():
     req_data = request.get_json()
 
@@ -46,7 +46,7 @@ def delete_todo():
         'ok': False
     }
 
-@app.route('/todo/update', methods=['PUT'])
+@app.route('/todos/update', methods=['PUT'])
 def update_todo():
     req_data = request.get_json()
 
